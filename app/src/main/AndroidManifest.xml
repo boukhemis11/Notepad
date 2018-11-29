@@ -16,7 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".NoteDetailActivity">
+        <activity android:name=".NoteDetailActivity"
+                  android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".NoteListActivity">
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".NoteListActivity"/>
         </activity>
     </application>
 

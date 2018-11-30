@@ -11,8 +11,10 @@ data class Note(var title: String = "", var text: String = "", var filename: Str
     ) {
     }
 
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+       parcel.writeString(title)
+        parcel.writeString(text)
+        parcel.writeString(filename)
     }
 
     override fun describeContents(): Int {

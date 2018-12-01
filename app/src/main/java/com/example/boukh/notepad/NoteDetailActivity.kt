@@ -15,6 +15,8 @@ class NoteDetailActivity : AppCompatActivity() {
         val REQUEST_EDIT_NOTE = 1
         val EXTRA_NOTE ="note"
         val EXTRA_NOTE_INDEX ="noteIndex"
+        val ACTION_SAVE_NOTE ="com.example.boukh.notepad.actions.ACTION_SAVE_NOTE"
+        val ACTION_DELETE_NOTE ="com.example.boukh.notepad.actions.ACTION_DELETE_NOTE"
     }
 
     lateinit var note: Note
@@ -61,10 +63,10 @@ class NoteDetailActivity : AppCompatActivity() {
     }
 
     private fun showConfirmDeleteNoteDialog() {
-        val confirmFragment = ConfirmeDeleteDialogFrangment()
+        val confirmFragment = ConfirmeDeleteDialogFrangment(note.title)
         confirmFragment.listener = object: ConfirmeDeleteDialogFrangment.ConfirmDeleteDialogListener {
             override fun onDialogPositiveClick() {
-
+                deleteNote()
             }
 
             override fun onDialogNegativeClick() {
@@ -78,8 +80,15 @@ class NoteDetailActivity : AppCompatActivity() {
         note.title = titleView.text.toString()
         note.text = textView.text.toString()
 
-        intent = Intent()
+        intent = Intent(ACTION_SAVE_NOTE)
         intent.putExtra(EXTRA_NOTE, note)
+        intent.putExtra(EXTRA_NOTE_INDEX,noteIndex)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
+    fun deleteNote() {
+        intent = Intent(ACTION_DELETE_NOTE)
         intent.putExtra(EXTRA_NOTE_INDEX,noteIndex)
         setResult(Activity.RESULT_OK, intent)
         finish()

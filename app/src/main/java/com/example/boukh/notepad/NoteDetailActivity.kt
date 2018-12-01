@@ -1,5 +1,7 @@
 package com.example.boukh.notepad
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
@@ -10,6 +12,7 @@ import android.widget.TextView
 class NoteDetailActivity : AppCompatActivity() {
 
     companion object {
+        val REQUEST_EDIT_NOTE = 1
         val EXTRA_NOTE ="note"
         val EXTRA_NOTE_INDEX ="noteIndex"
     }
@@ -46,9 +49,21 @@ class NoteDetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_save -> {
+                saveNote()
             return true
         }
         else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    fun saveNote() {
+        note.title = titleView.text.toString()
+        note.text = textView.text.toString()
+
+        intent = Intent()
+        intent.putExtra(EXTRA_NOTE, note)
+        intent.putExtra(EXTRA_NOTE_INDEX,noteIndex)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 }

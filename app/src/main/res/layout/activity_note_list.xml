@@ -19,9 +19,16 @@
             android:layout_height="match_parent"
             android:layout_below="@id/toolbar"
             tools:listitem="@layout/item_note"
-    >
+    />
 
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/creat_note_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:src="@drawable/baseline_add_circle_white_24dp"/>
 
-    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

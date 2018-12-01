@@ -2,8 +2,9 @@ package com.example.boukh.notepad
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.io.Serializable
 
-data class Note(var title: String = "", var text: String = "", var filename: String = "") : Parcelable {
+data class Note(var title: String = "", var text: String = "", var filename: String = "") : Parcelable, Serializable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
@@ -22,6 +23,7 @@ data class Note(var title: String = "", var text: String = "", var filename: Str
     }
 
     companion object CREATOR : Parcelable.Creator<Note> {
+        private val serialVersionVoid: Long = 2222222222
         override fun createFromParcel(parcel: Parcel): Note {
             return Note(parcel)
         }
